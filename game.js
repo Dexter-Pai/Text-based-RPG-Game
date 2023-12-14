@@ -1,6 +1,6 @@
 const debug = document.getElementsByClassName('debug')[0];
 
-// Structure of html
+// Structure of DOM
 const Structure = {
     viewport:{
         class: 'viewport',
@@ -33,49 +33,39 @@ const Structure = {
         parent: 'console',
         type: 'div'
     },
-    btn1:{
-        class: 'btn-1',
-        parent: 'nav',
-        type: 'button'
-    },
-    btn2:{
-        class: 'btn-2',
-        parent: 'nav',
-        type: 'button'
-    },
-    btn3:{
-        class: 'btn-3',
-        parent: 'nav',
-        type: 'button'
-    }
+    // btn1:{
+    //     class: 'btn-1',
+    //     parent: 'nav',
+    //     type: 'button'
+    // },
+    // btn2:{
+    //     class: 'btn-2',
+    //     parent: 'nav',
+    //     type: 'button'
+    // },
+    // btn3:{
+    //     class: 'btn-3',
+    //     parent: 'nav',
+    //     type: 'button'
+    // }
 }
-const Struct_Keys = Object.keys(Structure);
 
 // Objects
-const locations = {
+const Locations = {
     townsquare: ["Store", "Cave", "Dragon's Den"],
     store: ["Townsquare", "Buy", "Sell"]
 }
-
-// Initial function calls
-initialization();
-initial_populate_button();
-
-
-// variables
-let btn1 = document.getElementsByClassName('btn-1')[0];
-let btn2 = document.getElementsByClassName('btn-2')[0];
-let btn3 = document.getElementsByClassName('btn-3')[0];
 
 
 // Functions Start here
 
 
 // This will populate the DOM with appropriate objects
-function initialization () {
+let initialization = (function () {
+    const struct_key = Object.keys(Structure);
     let nameOfElement, parent, type, classname, child;
-    for (let i = 0; i < Struct_Keys.length; i++) {
-        nameOfElement = Struct_Keys[i];
+    for (let i = 0; i < struct_key.length; i++) {
+        nameOfElement = struct_key[i];
         parent = Structure[nameOfElement]['parent'];
         type = Structure[nameOfElement]['type'];
         classname = Structure[nameOfElement]['class'];
@@ -94,8 +84,18 @@ function initialization () {
             child.className = classname;
         }
     }
-}
+})();
 
-function initial_populate_button() {
-    
-}
+// variables
+let nav = document.getElementsByClassName('nav')[0];
+let description = document.getElementsByClassName('description')[0];
+
+let populate_buttons = (function populate_button(location) {
+    let btn;
+    for (let i = 0; i < Locations[location].length; i++) {
+        btn = document.createElement('button');
+        nav.appendChild(btn);
+        btn.classList.add('btn', `btn-${i+1}`);
+        btn.innerHTML = Locations[location][i];
+    }
+})();
