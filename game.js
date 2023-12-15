@@ -34,7 +34,7 @@ const Structure = {
         parent: 'console',
         type: 'div'
     },
-    // btn1:{
+    // btn:{
     //     class: 'btn-1',
     //     parent: 'nav',
     //     type: 'button'
@@ -86,19 +86,27 @@ let initialization = (function () {
 })();
 
 
-// variables
-let nav = document.getElementsByClassName('nav')[0];
-let description = document.getElementsByClassName('description')[0];
-
-
 // This will populate the DOM with appropriate buttons
 function populate_button (location) {
     let btn;
     for (let i = 0; i < Locations[location].length; i++) {
         btn = document.createElement('button');
-        nav.appendChild(btn);
+        document.getElementsByClassName('nav')[0].appendChild(btn);
         btn.classList.add('btn', `btn-${i+1}`);
         btn.innerHTML = Locations[location][i];
     }
 };
 populate_button('townsquare');
+
+
+// global variables
+
+
+
+// DOM elements
+let title = document.getElementsByClassName('title')[0];
+let description = document.getElementsByClassName('description')[0];
+let stats = document.getElementsByClassName('stats')[0];
+let nav = document.getElementsByClassName('nav')[0];
+let btn = document.getElementsByClassName('btn');
+
