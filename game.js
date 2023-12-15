@@ -1,5 +1,6 @@
 const debug = document.getElementsByClassName('debug')[0];
 
+
 // Structure of DOM
 const Structure = {
     viewport:{
@@ -50,6 +51,7 @@ const Structure = {
     // }
 }
 
+
 // Objects
 const Locations = {
     townsquare: ["Store", "Cave", "Dragon's Den"],
@@ -57,10 +59,7 @@ const Locations = {
 }
 
 
-// Functions Start here
-
-
-// This will populate the DOM with appropriate objects
+// This will populate the DOM with appropriate html tags
 let initialization = (function () {
     const struct_key = Object.keys(Structure);
     let nameOfElement, parent, type, classname, child;
@@ -86,11 +85,14 @@ let initialization = (function () {
     }
 })();
 
+
 // variables
 let nav = document.getElementsByClassName('nav')[0];
 let description = document.getElementsByClassName('description')[0];
 
-let populate_buttons = (function populate_button(location) {
+
+// This will populate the DOM with appropriate buttons
+function populate_button (location) {
     let btn;
     for (let i = 0; i < Locations[location].length; i++) {
         btn = document.createElement('button');
@@ -98,4 +100,5 @@ let populate_buttons = (function populate_button(location) {
         btn.classList.add('btn', `btn-${i+1}`);
         btn.innerHTML = Locations[location][i];
     }
-})();
+};
+populate_button('townsquare');
